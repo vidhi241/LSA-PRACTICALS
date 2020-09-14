@@ -1,0 +1,21 @@
+Aim: Installation of DHCP server in Ubuntu 16.04
+
+What is DHCP server ? 1)Dynamic Host Configuration Protocol (DHCP). 2)DHCP is a protocol that automatically provides an Internet Protocol (IP) and central management for the distribution ofIP addresses within a network. 3)DHCP is also used to configure the proper subset mask, default gateway, and DNS server information on the network devices
+
+Dynamic Host Configuration Protocol (DHCP)
+Steps:
+install dhcp-server:  
+$sudo apt install -y isc-dhcp-server
+
+configure your dhcpd.conf by: $sudo nano /etc/dhcp/dhcpd.conf
+
+to know about your ip addr:
+$ip addr
+
+configure subnet  & netmask, after tha save file and exit
+
+enable the service: 
+$sudo systemctl enable isc-dhcp-server.service
+
+start the service : 
+$sudo systemctl start isc-dhcp-server.service
