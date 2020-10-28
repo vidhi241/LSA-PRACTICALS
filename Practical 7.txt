@@ -1,0 +1,25 @@
+PRACTICAL NO. 7
+
+Aim: Install MySQL to configure database server.
+
+Theory: 
+The database for the Advanced Management Console provides data storage to host all the data. The database stores information about MSI files and applications, deployment rules, and deployment rule sets. The database also stores information about agents, Java Runtime Environment (JRE) statistics, and Java Installer configurations.
+
+The Advanced Management Console is also supported on Oracle Database.
+
+This topic contains the following sections that describe software requirements and MySQL installation and configuration for the Advanced Management Console:
+
+- Software Requirements for MySQL Database
+
+- Installing MySQL Database for Advanced Management Console
+
+Commands:
+
+sudo apt-get update
+sudo apt install -y wget
+sudo wget https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
+sudo dpkg -l mysql-apt-config_0.8.15-1_all.deb
+sudo apt update
+sudo apt install mysql-community-server
+sudo systemctl start mysql
+sudo systemctl status mysql
