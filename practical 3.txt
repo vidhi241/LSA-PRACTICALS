@@ -1,0 +1,54 @@
+ Practical No. 03
+
+ Aim :- Configure NFS server to share directories or files on your network.
+
+Theory:-
+
+NFS is not a static protocol. Standards committees have helped NFS evolve to take advantage of new technologies, as well as changes in usage patterns. At the time of this writing, three well-known versions of the protocol exist: NFS version 2 (NFSv2), NFS version 3 (NFSv3), and NFS version 4 (NFSv4). NFSv3 is the standard with perhaps the widest use. NFSv4 has been in development for a while and is the newest standard. NFSv2 shouldprobably be avoided if possible and should be considered only for legacy reasons.NFSv3 should be considered if stability and widest range of client support are desired.NFSv4 should be considered if its bleeding-edge features are needed and probably for very new deployments where backward compatibility is not an issue. Perhaps the most important factor in deciding which version of NFS to consider would be the version that your NFS clients will support. 
+Here are some of the features of each NFS version: 
+? NFSv2 Mount requests are granted on a per-host basis and not on a peruser basis. This version uses Transmission Control Protocol (TCP) or User Datagram Protocol (UDP) as its transport protocol. Version 2 clients have a file size limitation of less than 2 gigabytes (GB) that they can access.
+ ? NFSv3 This version includes a lot of fixes for the bugs in NFSv2. It has more features than version 2, has performance gains over version 2, and can use either TCP or UDP as its transport protocol. Depending on the local file system limits of the NFS server itself, clients can access files larger than 2GB in size. Mount requests are also granted on a per-host basis and not on a per-user basis
+. ? NFSv4 This version of the protocol uses a stateful protocol such as TCP or Stream Control Transmission Protocol (SCTP) as its transport.
+
+Steps to Implement Practical :- 
+Configuring the Server Machine :- 
+
+Step 01 :- Check apt is up to date
+ Command : sudo apt-get update
+
+Step 02:- Installing NFS Server 
+Command : sudo apt-get -y install nfs-kernel-server
+
+Step 03:- Make a new directory to be shared over the network
+ Command : sudo mkdir /path/dir_name
+
+Step 04 :- Give owner permission 
+Command : sudo chown nobody:nogroup dir_path
+
+Step 05 :- Give all permission
+ Command : sudo chmod 777 dir_path
+
+Step 06 :- Create file or move or copy the file on given dir_path
+ Command : cd dir_path
+
+Step 07 :- Configure the exports config file
+ Command : sudo nano /etc/exports 
+  Or
+ Command : sudo vi /etc/exports
+
+Step 08 :- Append the following line, in case of a single client (here we use 127.0.0.1 as client IP)
+ Command : dir_path clientIP(rw,sync,no_subtree_check)
+
+Step 09 :- Time to export the file system onto the network 
+ Command : sudo exportfs –a
+
+Step 10 :- For the configurations to work, restart the service 
+ Command : sudo systemctl restart nfs-kernel-server
+
+Step 11 :- Configure ufw to accept requests to the shared folder
+ Command : sudo ufw allow from clientIP to any port nfs
+
+Step 12 :- Check the status 
+ Command : sudo ufw status
+
+
