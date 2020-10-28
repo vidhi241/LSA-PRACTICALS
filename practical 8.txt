@@ -1,0 +1,36 @@
+PRACTICAL NO. 8
+
+Aim: Configure NIS in order to share user accounts in your local network.
+
+Theory: 
+Network Information Services (NIS) enables you to create user accounts that can be shared across all systems on your network. 
+
+The user account is created only on the NIS server. 
+
+NIS clients download the necessary username and password data from the NIS server to verify each user login.
+
+An advantage of NIS is that users need to change their passwords on the NIS server only, instead of every system on the network.
+
+This makes NIS popular in computer training labs, distributed software development projects or any other situation where 
+groups of people have to share many different computers.
+
+Commands:
+
+sudo apt-get update
+sudo apt install nis
+sudo nano /etc/default/nis
+NISSERVER= master NISCLIENT=false
+sudo cp /etc/default/nis  /etc/default/<filename>
+ip a
+sudo nano /etc/ypserv.securenets
+subnetmask     ip address
+sudo /usr/lib/yp/ypinit -m
+which gmake
+sudo apt-get install make (And Repeat Step 10)
+sudo systemctl restart rpcbind nis
+sudo systemctl status rpcbind
+sudo nano/etc/hosts
+ipaddress       server-name
+sudo nano /etc/yp.conf
+Domain domain-name  server server-host name
+sudo nano /etc/nsswitch.conf
